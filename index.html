@@ -1,0 +1,1563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Muhammad Adnan — E-Commerce & Retail BI Developer. Power BI, SQL, Python analytics specialist helping businesses increase sales and optimize decisions.">
+<title>Data Analyst & BI Developer | Power BI, SQL Server & ETL | Retail, E-commerce & Supply Chain Analytics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0A1628;
+    --slate: #1E3A5F;
+    --blue: #2563EB;
+    --blue-light: #3B82F6;
+    --cyan: #38BDF8;
+    --white: #F8FAFC;
+    --gray-100: #E2E8F0;
+    --gray-400: #94A3B8;
+    --gray-600: #475569;
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'Inter', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; font-size: 16px; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--navy);
+    color: var(--white);
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5vw;
+    height: 68px;
+    background: rgba(10, 22, 40, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(56, 189, 248, 0.08);
+    transition: all 0.3s;
+  }
+
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--cyan);
+    letter-spacing: -0.02em;
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--white); }
+
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--gray-400);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: color 0.2s;
+    letter-spacing: 0.01em;
+  }
+  .nav-links a:hover { color: var(--cyan); }
+
+  .nav-cta {
+    background: var(--blue);
+    color: var(--white) !important;
+    padding: 0.5rem 1.25rem;
+    border-radius: 6px;
+    font-weight: 600 !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--blue-light) !important; color: var(--white) !important; }
+
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: 0.3s; }
+
+  /* HERO */
+  #home {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 120px 5vw 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-grid-bg {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(37, 99, 235, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(37, 99, 235, 0.06) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 30%, transparent 100%);
+  }
+
+  .hero-glow {
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(37, 99, 235, 0.18) 0%, transparent 70%);
+    top: -100px; right: -100px;
+    pointer-events: none;
+  }
+
+  .hero-content { position: relative; max-width: 760px; }
+
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--cyan);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    padding: 0.35rem 0.9rem;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    border-radius: 100px;
+    background: rgba(56, 189, 248, 0.06);
+  }
+  .hero-eyebrow::before { content: ''; width: 6px; height: 6px; background: var(--cyan); border-radius: 50%; animation: pulse 2s infinite; }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  h1 {
+    font-size: clamp(2.6rem, 6vw, 4.2rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-title-sub {
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    font-weight: 600;
+    color: var(--cyan);
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  .hero-desc {
+    font-size: 1.1rem;
+    color: var(--gray-400);
+    max-width: 580px;
+    line-height: 1.75;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-desc strong { color: var(--white); font-weight: 600; }
+
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3.5rem; }
+
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--blue);
+    color: var(--white);
+    padding: 0.85rem 1.8rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: all 0.2s;
+    border: 2px solid var(--blue);
+  }
+  .btn-primary:hover { background: var(--blue-light); border-color: var(--blue-light); transform: translateY(-1px); }
+
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: transparent;
+    color: var(--white);
+    padding: 0.85rem 1.8rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    border: 2px solid rgba(255,255,255,0.2);
+    transition: all 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--cyan); color: var(--cyan); transform: translateY(-1px); }
+
+  /* STATS BAR */
+  .stats-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: rgba(56, 189, 248, 0.12);
+    border: 1px solid rgba(56, 189, 248, 0.12);
+    border-radius: 12px;
+    overflow: hidden;
+    max-width: 700px;
+  }
+
+  .stat-item {
+    background: rgba(30, 58, 95, 0.4);
+    padding: 1.25rem 1rem;
+    text-align: center;
+    backdrop-filter: blur(8px);
+  }
+
+  .stat-num {
+    font-family: var(--mono);
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+
+  .stat-num .accent { color: var(--cyan); }
+
+  .stat-label {
+    font-size: 0.72rem;
+    color: var(--gray-400);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+  }
+
+  /* SECTIONS */
+  section { padding: 96px 5vw; }
+
+  .section-eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--cyan);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+  }
+
+  h2 {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  .section-lead {
+    font-size: 1.05rem;
+    color: var(--gray-400);
+    max-width: 560px;
+    line-height: 1.75;
+    margin-bottom: 3.5rem;
+  }
+
+  /* SERVICES */
+  #services { background: rgba(30, 58, 95, 0.15); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .service-card {
+    background: rgba(30, 58, 95, 0.35);
+    border: 1px solid rgba(56, 189, 248, 0.1);
+    border-radius: 12px;
+    padding: 2rem;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--blue), var(--cyan));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .service-card:hover { border-color: rgba(56, 189, 248, 0.25); transform: translateY(-3px); }
+  .service-card:hover::before { transform: scaleX(1); }
+
+  .service-icon {
+    width: 48px; height: 48px;
+    background: rgba(37, 99, 235, 0.15);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.25rem;
+    font-size: 1.4rem;
+  }
+
+  .service-card h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+    letter-spacing: -0.01em;
+  }
+
+  .service-card p {
+    font-size: 0.9rem;
+    color: var(--gray-400);
+    line-height: 1.65;
+  }
+
+  /* IMPACT */
+  #impact {
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.12) 0%, rgba(10, 22, 40, 0) 60%);
+    border-top: 1px solid rgba(56, 189, 248, 0.08);
+    border-bottom: 1px solid rgba(56, 189, 248, 0.08);
+  }
+
+  .impact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .impact-item {
+    display: flex; gap: 1rem; align-items: flex-start;
+  }
+
+  .impact-dot {
+    width: 10px; height: 10px;
+    background: var(--cyan);
+    border-radius: 50%;
+    margin-top: 6px;
+    flex-shrink: 0;
+  }
+
+  .impact-item p { font-size: 1rem; color: var(--gray-100); font-weight: 500; line-height: 1.5; }
+  .impact-item span { display: block; font-size: 0.85rem; color: var(--gray-400); margin-top: 0.25rem; font-weight: 400; }
+
+  /* ABOUT */
+  .about-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .about-bio p {
+    font-size: 1rem;
+    color: var(--gray-400);
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+  }
+
+  .about-bio p strong { color: var(--white); }
+
+  .about-questions {
+    margin: 2rem 0;
+    display: flex; flex-direction: column; gap: 0.75rem;
+  }
+
+  .q-item {
+    display: flex; align-items: center; gap: 0.75rem;
+    font-size: 0.95rem;
+    color: var(--gray-100);
+    font-weight: 500;
+  }
+
+  .q-item::before {
+    content: '?';
+    width: 24px; height: 24px;
+    background: rgba(37, 99, 235, 0.2);
+    border: 1px solid rgba(37, 99, 235, 0.4);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--cyan);
+    flex-shrink: 0;
+    font-weight: 600;
+  }
+
+  .skills-grid {
+    display: flex; flex-direction: column; gap: 1rem;
+  }
+
+  .skill-row label {
+    display: flex; justify-content: space-between;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    color: var(--white);
+  }
+
+  .skill-row label span {
+    font-family: var(--mono);
+    color: var(--cyan);
+    font-size: 0.8rem;
+  }
+
+  .skill-bar {
+    height: 6px;
+    background: rgba(56, 189, 248, 0.1);
+    border-radius: 100px;
+    overflow: hidden;
+  }
+
+  .skill-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--blue), var(--cyan));
+    border-radius: 100px;
+    transition: width 1.5s ease;
+    width: 0;
+  }
+
+  /* PROJECTS */
+  #projects { background: rgba(30, 58, 95, 0.1); }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .project-card {
+    background: rgba(10, 22, 40, 0.7);
+    border: 1px solid rgba(56, 189, 248, 0.1);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: all 0.3s;
+    display: flex; flex-direction: column;
+  }
+  .project-card:hover { border-color: rgba(37, 99, 235, 0.4); transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+
+  .project-header {
+    padding: 1.75rem 1.75rem 1.25rem;
+    border-bottom: 1px solid rgba(56, 189, 248, 0.08);
+  }
+
+  .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem; }
+
+  .tag {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    background: rgba(37, 99, 235, 0.15);
+    color: var(--cyan);
+    border: 1px solid rgba(37, 99, 235, 0.25);
+    letter-spacing: 0.02em;
+    font-weight: 600;
+  }
+
+  .project-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+  }
+
+  .project-dataset {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--gray-400);
+    margin-bottom: 0;
+  }
+
+  .project-body { padding: 1.5rem 1.75rem; flex: 1; display: flex; flex-direction: column; gap: 1.1rem; }
+
+  .project-section-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--gray-600);
+    margin-bottom: 0.3rem;
+  }
+
+  .project-body p { font-size: 0.9rem; color: var(--gray-400); line-height: 1.65; }
+
+  .project-impact {
+    display: flex; align-items: flex-start; gap: 0.6rem;
+    background: rgba(37, 99, 235, 0.1);
+    border: 1px solid rgba(37, 99, 235, 0.2);
+    border-radius: 8px;
+    padding: 0.9rem 1rem;
+    margin-top: auto;
+  }
+
+  .project-impact-icon { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+  .project-impact p { color: var(--gray-100) !important; font-size: 0.88rem !important; font-weight: 500; }
+
+  
+/* EXPERIENCE */
+#experience {
+  background: rgba(30, 58, 95, 0.15);
+}
+
+.exp-card {
+  background: rgba(10, 22, 40, 0.6);
+  border: 1px solid rgba(56, 189, 248, 0.12);
+  border-radius: 14px;
+  padding: 2rem;
+  width: 100%;
+  max-width: 900px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.exp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(56, 189, 248, 0.12);
+}
+
+.exp-role {
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.3rem;
+}
+
+.exp-company {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.95rem;
+  color: var(--cyan);
+  font-weight: 600;
+}
+
+.exp-period {
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  color: var(--gray-400);
+  background: rgba(56, 189, 248, 0.08);
+  padding: 0.4rem 0.9rem;
+  border-radius: 100px;
+  border: 1px solid rgba(56, 189, 248, 0.15);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Experience bullet list */
+.exp-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+.exp-list li {
+  display: block;
+  position: relative;
+  padding-left: 1.25rem;
+  font-size: 0.92rem;
+  color: var(--gray-400);
+  line-height: 1.75;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+.exp-list li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--cyan);
+  font-family: var(--mono);
+  font-weight: 600;
+}
+
+.exp-list li strong {
+  display: inline;
+  color: var(--white);
+  font-weight: 700;
+}
+
+/* Responsive layout */
+@media (max-width: 600px) {
+  .exp-card {
+    padding: 1.25rem;
+  }
+
+  .exp-header {
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 1.25rem;
+  }
+
+  .exp-role {
+    font-size: 1.2rem;
+  }
+
+  .exp-company {
+    font-size: 0.85rem;
+  }
+
+  .exp-list {
+    gap: 0.85rem;
+  }
+
+  .exp-list li {
+    font-size: 0.88rem;
+    line-height: 1.7;
+  }
+}
+
+  /* CERTIFICATES */
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .cert-card {
+    background: rgba(30, 58, 95, 0.3);
+    border: 1px solid rgba(56, 189, 248, 0.1);
+    border-radius: 10px;
+    padding: 1.5rem;
+    display: flex; gap: 1rem; align-items: flex-start;
+    transition: all 0.25s;
+  }
+  .cert-card:hover { border-color: rgba(56, 189, 248, 0.3); background: rgba(30, 58, 95, 0.5); }
+
+  .cert-icon {
+    width: 40px; height: 40px;
+    background: linear-gradient(135deg, var(--blue), var(--cyan));
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .cert-card h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.3rem; line-height: 1.3; }
+  .cert-card p { font-size: 0.82rem; color: var(--gray-400); }
+
+  /* CONTACT */
+  #contact { background: rgba(10, 22, 40, 0.95); }
+
+  .contact-cta {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto 4rem;
+  }
+
+  .contact-cta p { color: var(--gray-400); font-size: 1.05rem; margin-top: 1rem; }
+
+  .contact-inner {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 4rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .contact-info { display: flex; flex-direction: column; gap: 1.25rem; }
+
+  .contact-item {
+    display: flex; gap: 1rem; align-items: flex-start;
+  }
+
+  .contact-item-icon {
+    width: 40px; height: 40px;
+    background: rgba(37, 99, 235, 0.15);
+    border: 1px solid rgba(37, 99, 235, 0.25);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .contact-item h4 { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gray-400); margin-bottom: 0.2rem; }
+  .contact-item a, .contact-item p { font-size: 0.9rem; color: var(--white); text-decoration: none; font-weight: 500; }
+  .contact-item a:hover { color: var(--cyan); }
+
+  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+
+  .form-group label { font-size: 0.82rem; font-weight: 600; color: var(--gray-400); letter-spacing: 0.02em; }
+
+  .form-group input,
+  .form-group textarea {
+    background: rgba(30, 58, 95, 0.4);
+    border: 1px solid rgba(56, 189, 248, 0.12);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    color: var(--white);
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    transition: border-color 0.2s;
+    outline: none;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus { border-color: var(--blue); background: rgba(30, 58, 95, 0.6); }
+  .form-group textarea { resize: vertical; min-height: 120px; }
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: var(--gray-600); }
+
+  .btn-submit {
+    background: linear-gradient(135deg, var(--blue), #1D4ED8);
+    color: var(--white);
+    border: none;
+    padding: 0.9rem 2rem;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: var(--sans);
+    letter-spacing: 0.01em;
+  }
+  .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(37, 99, 235, 0.4); }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 2.5rem 5vw;
+    border-top: 1px solid rgba(56, 189, 248, 0.08);
+    font-size: 0.85rem;
+    color: var(--gray-600);
+  }
+
+  footer a { color: var(--cyan); text-decoration: none; }
+
+  /* ANIMATIONS */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    .nav-links { display: none; flex-direction: column; position: absolute; top: 68px; left: 0; right: 0; background: rgba(10, 22, 40, 0.98); padding: 1.5rem 5vw; gap: 1.25rem; border-bottom: 1px solid rgba(56,189,248,0.08); }
+    .nav-links.open { display: flex; }
+    .hamburger { display: flex; }
+    .stats-bar { grid-template-columns: repeat(2, 1fr); }
+    .about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .form-row { grid-template-columns: 1fr; }
+    .exp-header { flex-direction: column; }
+    section { padding: 72px 5vw; }
+  }
+
+  @media (max-width: 480px) {
+    .stats-bar { grid-template-columns: repeat(2, 1fr); }
+    .hero-btns { flex-direction: column; }
+    .btn-primary, .btn-outline { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#home" class="nav-logo">MA<span>.</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#certificates">Certifications</a></li>
+    <li><a href="#contact" class="nav-cta">Hire Me</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Available for Freelance & Remote Work</div>
+    <h1>Muhammad Adnan</h1>
+    <div class="hero-title-sub">Data Analyst & BI Developer | Power BI, SQL Server & ETL | Retail, E-commerce & Supply Chain Analytics</div>
+    <p class="hero-desc">
+      I help retail, e-commerce, and supply chain businesses <strong>turn raw data into actionable insights, increase sales,</strong> and <strong>optimize inventory and improve decision-making</strong> through Power BI dashboards, SQL analytics, and end-to-end ETL solutions.
+    </p>
+    <div class="hero-btns">
+      <a href="https://github.com/Muhammad-Adnan76" class="btn-primary">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        View Projects
+      </a>
+      <a href="https://drive.google.com/file/d/1j2xb0dkXIjSUWRiyeaHyxe6qaQ6MFqfm/view?usp=sharing" class="btn-outline">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Resume
+      </a>
+      <a href="#contact" class="btn-outline">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+        Contact Me
+      </a>
+    </div>
+
+    <div class="stats-bar">
+      <div class="stat-item">
+        <div class="stat-num"><span class="count" data-target="2">0</span><span class="accent">+</span></div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num"><span class="count" data-target="13">0</span><span class="accent">+</span></div>
+        <div class="stat-label">Projects </div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num"><span class="count" data-target="120">0</span><span class="accent">K+</span></div>
+        <div class="stat-label">Transactions Analyzed</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num"><span class="accent">🥇</span></div>
+        <div class="stat-label">Medallion Architecture</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-eyebrow">What I Do</div>
+  <h2>Analytics Services</h2>
+  <p class="section-lead">End-to-end data solutions built for retail and e-commerce businesses that need clear, actionable insight — not just charts.</p>
+
+  <div class="services-grid">
+    <div class="service-card fade-up">
+      <div class="service-icon">📊</div>
+      <h3>Sales & Revenue Analytics</h3>
+      <p>Analyze sales, revenue, and profitability by product, category, region, and time period to identify performance trends and business growth opportunities.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon">⚡</div>
+      <h3>Power BI Dashboard Development</h3>
+      <p>Build interactive Power BI dashboards with KPI tracking, DAX measures, and insightful visualizations to help businesses monitor performance and make data-driven decisions.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon">👤</div>
+      <h3>Business Performance Analytics</h3>
+      <p>Analyze business data to identify trends, performance gaps, and opportunities to improve sales, profitability, and operational efficiency.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon">📦</div>
+      <h3>Retail & Inventory Analytics</h3>
+      <p>Analyze inventory levels, stock movement, product performance, and sales trends to support inventory planning and replenishment decisions.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon">🔄</div>
+      <h3>SQL, ETL & Data Transformation</h3>
+      <p>Clean, transform, and prepare business data using SQL Server and SSIS to create reliable, structured datasets for reporting and analysis.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon">🤖</div>
+      <h3>Automated Business Reporting</h3>
+      <p>Automate routine business reports using SQL and Power BI to reduce manual work, save time, and make sales, profit, and business performance reports easier to access and understand.</p>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT -->
+
+
+<section id="impact">
+  <div class="section-eyebrow">Project Highlights</div>
+  <h2>Results Through Data & Analytics</h2>
+
+  <div class="impact-grid">
+    <div class="impact-item fade-up">
+      <div class="impact-dot"></div>
+      <div>
+        <p><strong style="color:var(--cyan)">Data Analysis & Reporting</strong></p>
+        <span>Analyzed structured datasets to identify trends and generate actionable insights</span>
+      </div>
+    </div>
+
+    <div class="impact-item fade-up">
+      <div class="impact-dot"></div>
+      <div>
+        <p>Analyzed <strong style="color:var(--cyan)">$1.57M+</strong> in e-commerce revenue</p>
+        <span>Sales and profit trend analysis across 120K+ transactions</span>
+      </div>
+    </div>
+
+    <div class="impact-item fade-up">
+      <div class="impact-dot"></div>
+      <div>
+        <p>Applied <strong style="color:var(--cyan)">Medallion Architecture</strong> concepts</p>
+        <span>Practiced Bronze → Silver → Gold data processing in a supply chain analytics project</span>
+      </div>
+    </div>
+
+    <div class="impact-item fade-up">
+      <div class="impact-dot"></div>
+      <div>
+        <p>Built <strong style="color:var(--cyan)">interactive Power BI dashboards</strong></p>
+        <span>Visualized business metrics, sales trends, and performance indicators using prepared datasets</span>
+      </div>
+    </div>
+
+    <div class="impact-item fade-up">
+      <div class="impact-dot"></div>
+      <div>
+        <p>Analyzed <strong style="color:var(--cyan)">1M+ records</strong> using SQL</p>
+        <span>Applied joins, window functions, aggregations, and data exploration to structured datasets</span>
+      </div>
+    </div>
+
+    <div class="impact-item fade-up">
+      <div class="impact-dot"></div>
+      <div>
+        <p>Performed <strong style="color:var(--cyan)">retail & sales analysis</strong></p>
+        <span>Explored sales patterns and compared regional performance using available dataset fields</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-inner">
+    <div class="about-bio fade-up">
+      <div class="section-eyebrow">About Me</div>
+      <h2>Turning Data Into Business Decisions</h2>
+      <p>
+        I'm a <strong>Data Analyst and BI Developer</strong> specializing in Retail, E-Commerce, and Supply Chain Analytics. I help businesses transform raw data into actionable insights using SQL Server, Power BI, ETL pipelines, and data warehousing.
+      </p>
+      <p>
+        My approach is <strong>business-focused</strong>: I build end-to-end Business Intelligence solutions that help businesses <strong>increase sales, optimize inventory, automate reporting, and improve decision-making</strong> through interactive dashboards and reliable data systems.
+      </p>
+      <p>I help businesses answer the questions that actually drive revenue:</p>
+      <div class="about-questions">
+        <div class="q-item">Which products generate the most profit?</div>
+        <div class="q-item">Which customers drive the most revenue?</div>
+        <div class="q-item">Where are sales increasing or declining?</div>
+        <div class="q-item">How can inventory be optimized?</div>
+      </div>
+      <p>
+        I build end-to-end analytics systems following <strong>Medallion Architecture</strong> to ensure clean, reliable, and scalable data your team can trust.
+      </p>
+      <div style="display:flex;gap:1rem;margin-top:1.5rem;flex-wrap:wrap;">
+        <a href="https://github.com/Muhammad-Adnan76" target="_blank" rel="noopener" class="btn-outline" style="padding:0.6rem 1.25rem;font-size:0.875rem;">GitHub →</a>
+        <a href="https://www.linkedin.com/in/hafiz76/" target="_blank" rel="noopener" class="btn-outline" style="padding:0.6rem 1.25rem;font-size:0.875rem;">LinkedIn →</a>
+      </div>
+    </div>
+
+    <div class="fade-up">
+      <div class="section-eyebrow" style="margin-bottom:1.5rem;">Technical Skills</div>
+      <div class="skills-grid">
+        <div class="skill-row">
+          <label>Power BI (DAX, Power Query, Star Schema) <span>95%</span></label>
+          <div class="skill-bar"><div class="skill-fill" data-width="95"></div></div>
+        </div>
+        <div class="skill-row">
+          <label>SQL Server (Joins, Window Functions, KPIs) <span>92%</span></label>
+          <div class="skill-bar"><div class="skill-fill" data-width="92"></div></div>
+        </div>
+        <div class="skill-row">
+          <label>Python (Pandas, NumPy, Matplotlib) <span>80%</span></label>
+          <div class="skill-bar"><div class="skill-fill" data-width="80"></div></div>
+        </div>
+        <div class="skill-row">
+          <label>Excel (Pivot Tables, Dashboards) <span>90%</span></label>
+          <div class="skill-bar"><div class="skill-fill" data-width="90"></div></div>
+        </div>
+        <div class="skill-row">
+          <label>SSIS & Data Engineering <span>78%</span></label>
+          <div class="skill-bar"><div class="skill-fill" data-width="78"></div></div>
+        </div>
+        <div class="skill-row">
+          <label>Django (POS Systems) <span>65%</span></label>
+          <div class="skill-bar"><div class="skill-fill" data-width="65"></div></div>
+        </div>
+      </div>
+
+      <div style="margin-top:2rem;">
+        <div class="section-eyebrow" style="margin-bottom:1rem;">Architecture & Methodology</div>
+        <div style="display:flex;flex-wrap:wrap;gap:0.5rem;">
+          <span class="tag">Medallion Architecture</span>
+          <span class="tag">Star Schema</span>
+          <span class="tag">Data Warehousing</span>
+          <span class="tag">ETL Pipelines</span>
+          <span class="tag">KPI Design</span>
+          <span class="tag">DAX</span>
+          <span class="tag">Power Query</span>
+          <span class="tag">T-SQL</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-eyebrow">Portfolio</div>
+  <h2>Analytics Projects</h2>
+  <p class="section-lead">Each project is built around a real business problem — from raw data ingestion to decision-ready dashboards.</p>
+
+  <div class="projects-grid">
+
+    <div class="project-card fade-up">
+      <div class="project-header">
+        <div class="project-tags">
+          <span class="tag">Power BI</span>
+          <span class="tag">DAX</span>
+          <span class="tag">SQL</span>
+        </div>
+        <h3>Superstore Sales Analysis and Forecasting</h3>
+        <div class="project-dataset">📁 120K+ transactions · $1.57M revenue analyzed</div>
+      </div>
+      <div class="project-body">
+        <div>
+          <div class="project-section-label">Problem</div>
+          <p>The business needed better insights into sales, profit, and regional performance. Identifying growth opportunities and underperforming areas was a challenge.</p>
+        </div>
+        <div>
+          <div class="project-section-label">Solution</div>
+          <p>Built an interactive Power BI dashboard to track KPIs and analyze sales trends. Included product comparisons, regional analysis, and sales forecasting.</p>
+        </div>
+        <div class="project-impact">
+          <span class="project-impact-icon">📈</span>
+          <p>Highlighted top-performing products and regions while simplifying sales analysis. Supported data-driven decisions and improved business planning.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card fade-up">
+      <div class="project-header">
+        <div class="project-tags">
+          <span class="tag">SQL Server</span>
+          <span class="tag">T-SQL</span>
+          <span class="tag">Window Functions</span>
+        </div>
+        <h3>Supply Chain Performance Analysis</h3>
+        <div class="project-dataset">📁 1M+ records processed</div>
+      </div>
+      <div class="project-body">
+        <div>
+          <div class="project-section-label">Problem</div>
+          <p>Analyzing large volumes of supply chain data made it difficult to track sales, product performance, customer trends, and shipping delays.</p>
+        </div>
+        <div>
+          <div class="project-section-label">Solution</div>
+          <p>Used SQL Server to analyze supply chain data, identify top-selling products, evaluate revenue and profit, and explore customer performance and shipping delays.</p>
+        </div>
+        <div class="project-impact">
+          <span class="project-impact-icon">⚙️</span>
+          <p>Uncovered insights to support better inventory planning, improve sales strategies, and help businesses make data-driven supply chain decisions.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card fade-up">
+      <div class="project-header">
+        <div class="project-tags">
+          <span class="tag">Power BI</span>
+          <span class="tag">KPI Design</span>
+          <span class="tag">DAX</span>
+        </div>
+        <h3>E-commerce Sales Dashboard</h3>
+        <div class="project-dataset">📁 15K+ Sales Transactions Analyzed</div>
+      </div>
+      <div class="project-body">
+        <div>
+          <div class="project-section-label">Problem</div>
+          <p>Businesses need a clear view of sales, profit, and customer trends to understand what is driving performance and where improvements are needed.</p>
+        </div>
+        <div>
+          <div class="project-section-label">Solution</div>
+          <p>Created an interactive Power BI dashboard to track key KPIs, analyze monthly profit, compare product categories, and explore customer and regional sales performance.</p>
+        </div>
+        <div class="project-impact">
+          <span class="project-impact-icon">🎯</span>
+          <p>Made sales insights easier to understand, helped identify strong and underperforming product segments, and supported informed decisions to improve business performance.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card fade-up">
+      <div class="project-header">
+        <div class="project-tags">
+          <span class="tag">SSIS</span>
+          <span class="tag">SQL Server</span>
+          <span class="tag">Data Warehouse</span>
+        </div>
+        <h3>Data Warehouse & ETL Pipeline</h3>
+        <div class="project-dataset">📁 Medallion Architecture: Bronze → Silver → Gold</div>
+      </div>
+      <div class="project-body">
+        <div>
+          <div class="project-section-label">Problem</div>
+          <p>Raw data was scattered across multiple source systems, making analysis and reporting difficult. A centralized data warehouse was needed to ensure clean, consistent, and reliable data.</p>
+        </div>
+        <div>
+          <div class="project-section-label">Solution</div>
+          <p>Built a Medallion Architecture data warehouse using SSIS ETL pipelines and Star Schema design. Developed fact and dimension tables to organize data for efficient analysis and reporting.</p>
+        </div>
+        <div class="project-impact">
+          <span class="project-impact-icon">🏗️</span>
+          <p>Created a scalable data foundation that improves data quality and reporting consistency. Enabled reliable analytics and provided clean, structured data for Power BI dashboards and business decisions.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card fade-up">
+      <div class="project-header">
+        <div class="project-tags">
+          <span class="tag">Django</span>
+          <span class="tag">Python</span>
+          <span class="tag">SQLite</span>
+        </div>
+        <h3>POS & Inventory Management System</h3>
+        <div class="project-dataset">📁 Full-stack retail management application</div>
+      </div>
+      <div class="project-body">
+        <div>
+          <div class="project-section-label">Problem</div>
+          <p>The client needed a simple way to manage sales and inventory without relying on manual records, which were prone to errors and difficult to track.</p>
+        </div>
+        <div>
+          <div class="project-section-label">Solution</div>
+          <p>Built a Django-based POS system with inventory tracking, sales management, secure user authentication, role-based access, and transaction history.</p>
+        </div>
+        <div class="project-impact">
+          <span class="project-impact-icon">🛒</span>
+          <p>Reduced reliance on manual record-keeping, improved stock tracking, and made daily sales records easier to manage and review.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-eyebrow">Work History</div>
+  <h2>Professional Experience</h2>
+
+  <!-- Associate Data Engineer -->
+  <div class="exp-card fade-up" style="margin-top:2.5rem;">
+    <div class="exp-header">
+      <div>
+        <div class="exp-role">Associate Data Engineer</div>
+        <div class="exp-company">
+          <svg width="14" height="14" fill="none" stroke="currentColor"
+               stroke-width="2" viewBox="0 0 24 24">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+          Kaswa.AI — Remote
+        </div>
+      </div>
+      <div class="exp-period">Jan 2024 – Jun 2025</div>
+    </div>
+
+    <ul class="exp-list">
+      <li>
+        Developed <strong>SQL-based ETL pipelines</strong> to transform
+        retail, e-commerce, and supply chain data into structured,
+        analytics-ready datasets.
+      </li>
+      <li>
+        Built interactive <strong>Power BI dashboards</strong> to track
+        sales, inventory, customer trends, and key performance indicators
+        (KPIs).
+      </li>
+      <li>
+        Improved <strong>data quality and reporting automation</strong>
+        to deliver actionable business insights and support
+        client decision-making.
+      </li>
+    </ul>
+  </div>
+
+  <!-- Data Engineer Intern -->
+  <div class="exp-card fade-up" style="margin-top:1.5rem;">
+    <div class="exp-header">
+      <div>
+        <div class="exp-role">Data Engineer Intern</div>
+        <div class="exp-company">
+          <svg width="14" height="14" fill="none" stroke="currentColor"
+               stroke-width="2" viewBox="0 0 24 24">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+          Kaswa.AI — Remote
+        </div>
+      </div>
+      <div class="exp-period">Aug 2023 – Oct 2023</div>
+    </div>
+
+    <ul class="exp-list">
+      <li>
+        Supported <strong>data cleaning, transformation,
+        integration, and validation</strong> using SQL to maintain
+        reliable and consistent datasets.
+      </li>
+      <li>
+        Assisted with <strong>ETL workflows and Power BI reporting</strong>
+        to improve data accuracy, accessibility, and reporting efficiency.
+      </li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- CERTIFICATES -->
+
+<section id="certificates" style="background:rgba(30,58,95,0.1);">
+  <div class="section-eyebrow">Credentials</div>
+  <h2>Certifications</h2>
+  <p class="section-lead">
+    Continuously improving my skills in analytics, AI, and data engineering.
+  </p>
+
+  <div class="certs-grid">
+    <div class="cert-card fade-up">
+      <div class="cert-icon">🎓</div>
+      <div>
+        <h4>Google Data Analytics Professional Certificate</h4>
+        <p>Google · Coursera</p>
+      </div>
+    </div>
+
+    <div class="cert-card fade-up">
+      <div class="cert-icon">📊</div>
+      <div>
+        <h4>Google Business Intelligence Professional Certificate</h4>
+        <p>Google · Coursera</p>
+      </div>
+    </div>
+
+    <div class="cert-card fade-up">
+      <div class="cert-icon">🗄️</div>
+      <div>
+        <h4>Querying Microsoft SQL Server 2019</h4>
+        <p>LinkedIn Learning</p>
+      </div>
+    </div>
+
+    <div class="cert-card fade-up">
+      <div class="cert-icon">📈</div>
+      <div>
+        <h4>Preparing Data for Analysis with Microsoft Excel</h4>
+        <p>Microsoft · Coursera</p>
+      </div>
+    </div>
+
+    <div class="cert-card fade-up">
+      <div class="cert-icon">🏛️</div>
+      <div>
+        <h4>Data Warehousing and Business Intelligence</h4>
+        <p>University of California, Irvine (UCI)</p>
+      </div>
+    </div>
+
+    <div class="cert-card fade-up">
+      <div class="cert-icon">🐍</div>
+      <div>
+        <h4>Python with Power BI: Analyzing Data</h4>
+        <p>Coursera</p>
+      </div>
+    </div>
+
+    <div class="cert-card fade-up">
+      <div class="cert-icon">⚙️</div>
+      <div>
+        <h4>Databricks for Data Analysts</h4>
+        <p>LinkedIn Learning</p>
+      </div>
+    </div>
+
+    <div class="cert-card fade-up">
+      <div class="cert-icon">🤖</div>
+      <div>
+        <h4>AI for Everyone</h4>
+        <p>DeepLearning.AI · Coursera</p>
+      </div>
+    </div>
+
+    <div class="cert-card fade-up">
+      <div class="cert-icon">🧠</div>
+      <div>
+        <h4>AI Foundations for Everyone Specialization</h4>
+        <p>IBM · Coursera</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-cta fade-up">
+    <div class="section-eyebrow" style="text-align:center;">Get In Touch</div>
+    <h2>Let's Turn Your Business Data Into Profit-Driven Insights</h2>
+    <p>I offer professional data analytics, dashboard development, and data engineering services to help businesses make data-driven decisions. Let’s discuss your project and find the right solution for your needs.</p>
+  </div>
+
+  <div class="contact-inner">
+
+    <!-- Contact Information -->
+    <div class="contact-info fade-up">
+      <div class="contact-item">
+        <div class="contact-item-icon">✉️</div>
+        <div>
+          <h4>Email</h4>
+          <a href="mailto:adnan.datainsight@gmail.com">adnan.datainsight@gmail.com</a>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-item-icon">📱</div>
+        <div>
+          <h4>Phone / WhatsApp</h4>
+          <a href="tel:+923224880476">+92 322 4880476</a>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-item-icon">📍</div>
+        <div>
+          <h4>Location</h4>
+          <p>Nankana Sahib, Punjab, Pakistan</p>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-item-icon">💻</div>
+        <div>
+          <h4>GitHub</h4>
+          <a href="https://github.com/Muhammad-Adnan76"
+             target="_blank" rel="noopener">github.com/Muhammad-Adnan76</a>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-item-icon">🔗</div>
+        <div>
+          <h4>LinkedIn</h4>
+          <a href="https://www.linkedin.com/in/hafiz76/"
+             target="_blank" rel="noopener">linkedin.com/in/hafiz76</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Web3Forms Contact Form -->
+    <div class="contact-form fade-up">
+      <form id="contact-form">
+
+        <input type="hidden" name="access_key"
+               value="2841a91f-d950-41c0-8cce-8ae1fd86599b">
+
+        <input type="hidden" name="subject"
+               value="New Portfolio Contact Message">
+
+        <!-- Honeypot spam protection -->
+        <input type="checkbox" name="botcheck"
+               style="display:none" tabindex="-1">
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fname">First Name</label>
+            <input type="text" id="fname" name="first_name"
+                   placeholder="John" autocomplete="given-name"
+                   required>
+          </div>
+
+          <div class="form-group">
+            <label for="lname">Last Name</label>
+            <input type="text" id="lname" name="last_name"
+                   placeholder="Smith" autocomplete="family-name">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Business Email</label>
+          <input type="email" id="email" name="email"
+                 placeholder="john@company.com"
+                 autocomplete="email" required>
+        </div>
+
+        <div class="form-group">
+          <label for="project-subject">What do you need help with?</label>
+          <input type="text" id="project-subject"
+                 name="project_subject"
+                 placeholder="e.g. Power BI dashboard for our sales team"
+                 required>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Tell me more</label>
+          <textarea id="message" name="message"
+                    placeholder="Describe your data challenge, business goal, or project scope..."
+                    required></textarea>
+        </div>
+
+        <!-- Additional honeypot -->
+        <div style="position:absolute;left:-9999px"
+             aria-hidden="true">
+          <label for="website">Leave this field empty</label>
+          <input type="text" id="website" name="website"
+                 tabindex="-1" autocomplete="off">
+        </div>
+
+        <p id="form-status" role="status"
+           aria-live="polite"></p>
+
+        <button class="btn-submit" id="submit-btn" type="submit">
+          Send Message →
+        </button>
+
+      </form>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Muhammad Adnan &mdash; E-Commerce & Retail BI Developer &mdash; <a href="mailto:adnan.datainsight@gmail.com">adnan.datainsight@gmail.com</a></p>
+</footer>
+
+
+<script>
+  // Hamburger menu
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+
+  // Close menu on link click
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => {
+      document.getElementById('navLinks').classList.remove('open');
+    });
+  });
+
+  // Scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Skill bars
+  const skillObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('.skill-fill').forEach(bar => {
+          bar.style.width = bar.dataset.width + '%';
+        });
+        skillObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  document.querySelectorAll('.skills-grid').forEach(el => skillObserver.observe(el));
+
+  // Animated counters
+  function animateCount(el) {
+    const target = parseInt(el.dataset.target, 10);
+    const duration = 1800;
+    const start = performance.now();
+
+    function update(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.floor(eased * target);
+
+      if (progress < 1) {
+        requestAnimationFrame(update);
+      } else {
+        el.textContent = target;
+      }
+    }
+
+    requestAnimationFrame(update);
+  }
+
+  const countObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('.count').forEach(animateCount);
+        countObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('.stats-bar').forEach(el => countObserver.observe(el));
+
+  // Web3Forms contact form
+  const contactForm = document.getElementById('contact-form');
+
+  if (contactForm) {
+    contactForm.addEventListener('submit', async function(event) {
+      event.preventDefault();
+
+      const status = document.getElementById('form-status');
+      const button = document.getElementById('submit-btn');
+
+      if (!contactForm.reportValidity()) return;
+
+      const formData = new FormData(contactForm);
+      const topic = formData.get('project_subject') || 'General Inquiry';
+
+      formData.set('subject', 'Portfolio Inquiry: ' + topic);
+
+      status.textContent = 'Sending your message...';
+      button.disabled = true;
+
+      try {
+        const response = await fetch(
+          'https://api.web3forms.com/submit',
+          {
+            method: 'POST',
+            body: formData
+          }
+        );
+
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+          status.textContent =
+            'Thank you! Your message has been sent successfully.';
+          contactForm.reset();
+        } else {
+          status.textContent =
+            result.message || 'Message failed to send. Please try again.';
+        }
+      } catch (error) {
+        status.textContent =
+          'Network error. Please check your connection and try again.';
+      } finally {
+        button.disabled = false;
+      }
+    });
+  }
+
+  // Navbar shadow
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('navbar');
+
+    if (nav) {
+      nav.style.boxShadow = window.scrollY > 40
+        ? '0 4px 30px rgba(0,0,0,0.3)'
+        : 'none';
+    }
+  });
+</script>
+</body>
+</html>
